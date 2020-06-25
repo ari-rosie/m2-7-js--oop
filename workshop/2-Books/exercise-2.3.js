@@ -1,6 +1,43 @@
 // From 2.1. and 2.2
 // Copy over your solutions classes you created in 2.1 and 2.2.
 // Paste them right here:
+class Book {
+  constructor(title, genre, author, isRead) {
+      this.title = title;
+      this.genre = genre;
+      this.author = author;
+      this.isRead = isRead || false;
+  }
+}
+
+class BookList {
+  constructor() {
+    this.books = [];
+    this.lastRead = null;
+    this.currentlyReading = null;
+  }
+
+  add = (Book) => {
+    this.books.push(Book);
+    if (!this.currentlyReading) this.currentlyReading = Book;
+  }
+
+  getNumRead = () => {
+    let read = 0;
+    this.books.forEach(book => {
+      if(book.isRead) read++;
+    });
+    return read;
+  }
+
+  getNumUnread = () => {
+    let unread = 0;
+    this.books.forEach(book => {
+      if(!book.isRead) unread++;
+    });
+    return unread;
+  }
+}
 
 // Exercise 2.3
 //
@@ -33,6 +70,7 @@ homeLibrary.add(
   new Book('Eloquent JavaScript', 'Programming', 'Marijn Haverbeke', true)
 );
 
+console.log(homeLibrary);
 // At this point, we should have 2 unread books, and 1 read book:
 console.log(homeLibrary.getNumUnread()); // 2
 console.log(homeLibrary.getNumRead()); // 1
