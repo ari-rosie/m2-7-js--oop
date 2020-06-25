@@ -30,6 +30,54 @@ and set `lastRead` to the book we just finished.
 Your goal is to add the methods and behaviour necessary so that the following
 code runs well and produces the expected output.
 */
+class Book {
+  constructor(title, genre, author, isRead) {
+      this.title = title;
+      this.genre = genre;
+      this.author = author;
+      this.isRead = isRead || false;
+  }
+}
+
+class BookList {
+  constructor() {
+    this.books = [];
+    this.lastRead = null;
+    this.currentlyReading = null;
+  }
+
+  add = (Book) => {
+    this.books.push(Book);
+    if (!this.currentlyReading) this.currentlyReading = Book;
+  }
+
+  getNumRead = () => {
+    let read = 0;
+    this.books.forEach(book => {
+      if(book.isRead) read++;
+    });
+    return read;
+  }
+
+  getNumUnread = () => {
+    let unread = 0;
+    this.books.forEach(book => {
+      if(!book.isRead) unread++;
+    });
+    return unread;
+  }
+
+  finishReading = (title) => {
+    let book = this.books.filter((book) => book.title === title);
+    this.currentlyReading = null;
+    this.lastRead = book;
+  }
+
+  startReading = (title) => {
+    let book = this.books.filter((book) => book.title === title);
+    this.currentlyReading = book;
+  }
+}
 
 const homeLibrary = new BookList();
 
