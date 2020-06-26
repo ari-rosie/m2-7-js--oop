@@ -60,7 +60,9 @@ homeLibrary.add(
 new Book('The Revisionists', 'Science-fiction', 'thomas Mullen','', 'url(imgs/revisionists.jpg)')
 );
 
-
+homeLibrary.add(new Book('Animal Farm', 'political satire', 'George Orwell', true, 'url(imgs/animalfarm.jpg)'));
+homeLibrary.add(new Book('Sulphuric Acid', 'novel', 'Amelie Nothomb', true, 'url(imgs/sulphacid.jpg)'));
+homeLibrary.add(new Book('Life of hunger', 'novel', 'Amelie Nothomb', false, 'url(imgs/lifehunger.jpg)'));
 
 //DOM VARIABLE
 const library = document.querySelector('#library');
@@ -78,12 +80,9 @@ homeLibrary.books.forEach(book => {
 });
 
 //adding book currently reading
-let curr = homeLibrary.currentlyReading;
-
 const addCurrentBook = (book) => {
     let bookTitle = document.createElement('h2');
-    bookTitle.innerText = `${book.title}`;
-    currentBook.appendChild(bookTitle);
-}
+    bookTitle.innerText = `${book.title}`;    
+    currentBook.appendChild(bookTitle);}
 
-addCurrentBook(curr);
+addCurrentBook(homeLibrary.currentlyReading);
